@@ -1,0 +1,117 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "ec2:*",
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "elasticloadbalancing:*",
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "cloudwatch:*",
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "autoscaling:*",
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "iam:Get*",
+                "iam:List*",
+                "iam:PassRole",
+                "kms:ListAliases",
+                "s3:Get*",
+                "s3:List*",
+                "s3:Put*",
+                "sns:ListTopics",
+                "cloudformation:*"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Condition": {
+                "StringNotEquals": {
+                    "cloudformation:ResourceTag/Owner": "Instance-Operations"
+                }
+            },
+            "Action": "cloudformation:DeleteStack",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:RequestTag/Owner": "Instance-Operations"
+                }
+            },
+            "Action": "cloudformation:CreateStack",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": [
+                "ssm:StartSession",
+                "ssm:ResumeSession",
+                "ssm:TerminateSession",
+                "ssm:GetConnectionStatus",
+                "ssm:DescribeSessions",
+                "ssm:DescribeInstanceProperties"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "ec2:CreateVpc*",
+                "ec2:DeleteVpc*",
+                "ec2:ModifyVpc*",
+                "ec2:CreateSubnet*",
+                "ec2:DeleteSubnet*",
+                "ec2:ModifySubnet*",
+                "ec2:Create*Route*",
+                "ec2:DeleteRoute*",
+                "ec2:AssociateRoute*",
+                "ec2:ReplaceRoute*",
+                "ec2:CreateVpn*",
+                "ec2:DeleteVpn*",
+                "ec2:AttachVpn*",
+                "ec2:DetachVpn*",
+                "ec2:CreateNetworkAcl*",
+                "ec2:DeleteNetworkAcl*",
+                "ec2:ReplaceNetworkAcl*",
+                "ec2:*Gateway*",
+                "ec2:*PeeringConnection*"
+            ],
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": "aws-portal:*Billing",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": [
+                "kms:CreateAlias",
+                "kms:CreateKey",
+                "kms:Revoke*",
+                "kms:Enable*",
+                "kms:Get*",
+                "kms:Disable*",
+                "kms:Delete*",
+                "kms:Put*",
+                "kms:Update*"
+            ],
+            "Resource": "*",
+            "Effect": "Deny"
+        }
+    ]
+}

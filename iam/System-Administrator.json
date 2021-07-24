@@ -1,0 +1,142 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Resource": "*",
+            "Effect": "Allow",
+            "NotAction": "iam:*"
+        },
+        {
+            "Action": "aws-portal:*Billing",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Condition": {
+                "ForAllValues:StringNotEquals": {
+                    "cloudformation:ResourceTag/Owner": [
+                        "System-Administrator",
+                        "Instance-Operations"
+                    ]
+                }
+            },
+            "Action": "cloudformation:DeleteStack",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Condition": {
+                "ForAllValues:StringNotEquals": {
+                    "aws:RequestTag/Owner": [
+                        "System-Administrator",
+                        "Instance-Operations"
+                    ]
+                }
+            },
+            "Action": "cloudformation:CreateStack",
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": "config:*",
+            "Resource": [
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-9cp9kq",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-rwljge",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-pbyraa",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-3tsbt9",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-6nhqux",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-knjlkw",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-snzptc",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-mg3vi2",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-6ps6gi",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-q9ngpc",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-3m4uyd",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-5rkknv",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-pa1fjk",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-pmefqk",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-gtabmn",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-9ufmve",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-r8vstp",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-0dpbm9",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-0l09rd",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-vc7flg",
+                "arn:aws-us-gov:config:us-gov-west-1:183479966114:config-rule/config-rule-w9zqvb"
+            ],
+            "Effect": "Deny"
+        },
+        {
+            "Action": [
+                "cloudtrail:DeleteTrail",
+                "cloudtrail:StopLogging",
+                "cloudtrail:UpdateTrail"
+            ],
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": [
+                "iam:Get*",
+                "iam:List*",
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "ec2:CreateVpc*",
+                "ec2:DeleteVpc*",
+                "ec2:ModifyVpc*",
+                "ec2:CreateSubnet*",
+                "ec2:DeleteSubnet*",
+                "ec2:ModifySubnet*",
+                "ec2:Create*Route*",
+                "ec2:DeleteRoute*",
+                "ec2:AssociateRoute*",
+                "ec2:ReplaceRoute*",
+                "ec2:CreateVpn*",
+                "ec2:DeleteVpn*",
+                "ec2:AttachVpn*",
+                "ec2:DetachVpn*",
+                "ec2:CreateNetworkAcl",
+                "ec2:DeleteNetworkAcl",
+                "ec2:ReplaceNetworkAclAssociation",
+                "ec2:Accept*Gateway*",
+                "ec2:Associate*Gateway*",
+                "ec2:Attach*Gateway*",
+                "ec2:Create*Gateway*",
+                "ec2:Delete*Gateway*",
+                "ec2:Deregister*Gateway*",
+                "ec2:Detach*Gateway*",
+                "ec2:Disable*Gateway*",
+                "ec2:Disassociate*Gateway*",
+                "ec2:Enable*Gateway*",
+                "ec2:Export*Gateway*",
+                "ec2:Get*Gateway*",
+                "ec2:Modify*Gateway*",
+                "ec2:Register*Gateway*",
+                "ec2:Reject*Gateway*",
+                "ec2:Replace*Gateway*",
+                "ec2:Search*Gateway*",
+                "ec2:*PeeringConnection*"
+            ],
+            "Resource": "*",
+            "Effect": "Deny"
+        },
+        {
+            "Action": [
+                "kms:CreateAlias",
+                "kms:CreateKey",
+                "kms:Revoke*",
+                "kms:Enable*",
+                "kms:Get*",
+                "kms:Disable*",
+                "kms:Delete*",
+                "kms:Put*",
+                "kms:Update*"
+            ],
+            "Resource": "*",
+            "Effect": "Deny"
+        }
+    ]
+}

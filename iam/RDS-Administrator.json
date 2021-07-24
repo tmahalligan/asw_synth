@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "cloudwatch:Describe*",
+                "cloudwatch:Get*"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "rds:*"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}
